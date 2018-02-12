@@ -7,7 +7,10 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * s
+ * The {@code Recipient} class represents the data type for the recipient of donations.
+ * The donations statistics grouped by year and zip code, and are stored by
+ * {@code Map<YearZipCode, Statistic> groupedStatistics}.
+ *
  * @author khwu
  */
 public class Recipient {

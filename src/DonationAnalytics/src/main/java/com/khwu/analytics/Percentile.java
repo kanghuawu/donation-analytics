@@ -3,7 +3,10 @@ package com.khwu.analytics;
 import java.util.*;
 
 /**
- * s
+ * The {@code Percentile} class represents the data structure for calculating
+ * nearest-rank percentile efficiently. The definition of nearest-rank percentile
+ * can be found from here: https://en.wikipedia.org/wiki/Percentile.
+ *
  * @author khwu
  */
 public class Percentile {

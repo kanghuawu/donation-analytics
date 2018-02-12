@@ -7,7 +7,9 @@ import lombok.NoArgsConstructor;
 import java.util.Objects;
 
 /**
- * d
+ * The {@code YearZipCode} are bundled together so that two fields {@code year} and
+ * {@code zipCode} can act as one lookup field.
+ *
  * @author khwu
  */
 @Data

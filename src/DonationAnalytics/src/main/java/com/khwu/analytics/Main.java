@@ -1,5 +1,12 @@
 package com.khwu.analytics;
 
+/**
+ * The {@code Main} class represents the starting point of this program. It requires
+ * three arguments as input.
+ *
+ * @author khwu
+ */
+
 public class Main {
 
     public static void main(String[] args) {
@@ -7,10 +14,10 @@ public class Main {
             System.out.println("Incorrect input. Expecting: java -cp donation-analytics.jar <input file> <percentile file> <output file>");
             return;
         }
-//        long beforeTimestamp = start();
+        // long beforeTimestamp = start();
         StreamProcessor streamProcessor = new StreamProcessor();
         streamProcessor.startAnalysis(args[0], args[1], args[2]);
-//        end(beforeTimestamp);
+        // end(beforeTimestamp);
     }
 
     private static long start() {

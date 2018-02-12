@@ -5,7 +5,9 @@ import lombok.Getter;
 import java.util.Optional;
 
 /**
- * s
+ * The {@code Statistic} class represents the data type for storing percentile, sum and
+ * total number of donors.
+ *
  * @author khwu
  */
 public class Statistic {

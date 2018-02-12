@@ -13,13 +13,15 @@ import java.util.Scanner;
 import java.util.stream.Stream;
 
 /**
- * s
+ * The {@code StreamProcessor} class act as processor for processing
+ * incoming streaming data.
+ *
  * @author khwu
  */
 public class StreamProcessor {
 
-    private final String DELIMITER = "\\|";
     private final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("MMddyyyy");
+    private final String DELIMITER = "\\|";
     private final String ZIP_CODE_REGEX = "^\\d{5,}$";
     private final DonationDB donationDB;
 
@@ -36,15 +38,15 @@ public class StreamProcessor {
             if (percentile > 100 || percentile <= 0) {
                 throw new IllegalArgumentException("Incorrect percentile.");
             }
-//            System.out.printf("Percentile is: %d%n", percentile);
-            streamFromInput.map(line -> parseDonation(line, DELIMITER, percentile))
-                    .filter(Optional::isPresent)
-                    .map(Optional::get)
-                    .peek(donationDB::addDonorToDB)
-                    .filter(donationDB::isRepeatedDonor)
-                    .peek(donationDB::saveDonationToDB)
-                    .forEach(donation -> donationDB.getSummary(donation)
-                            .ifPresent(summary -> writeToFile(writer, summary))
+            // System.out.printf("Percentile is: %d%n", percentile);
+            streamFromInput.map(line -> parseDonation(line, percentile))   // parse incoming donation data
+                    .filter(Optional::isPresent)                           // filter out empty data
+                    .map(Optional::get)                                    // transform back to Donation object
+                    .peek(donationDB::addDonorToDB)                        // add donor to virtual database
+                    .filter(donationDB::isRepeatedDonor)                   // include repeated donors
+                    .peek(donationDB::saveDonationToDB)                    // save donation to virtual database
+                    .forEach(donation -> donationDB.getSummary(donation)   // retrieve summary of donation
+                            .ifPresent(summary -> writeToFile(writer, summary))   // write to file
                     );
 
         } catch (IOException e) {
@@ -62,8 +64,8 @@ public class StreamProcessor {
         }
     }
 
-    private Optional<Donation> parseDonation(String input, String regex, double percentile) {
-        String[] inputSplits = input.split(regex);
+    private Optional<Donation> parseDonation(String input, double percentile) {
+        String[] inputSplits = input.split(DELIMITER);
 
         String cmteID = inputSplits[0];
         String name = inputSplits[7];

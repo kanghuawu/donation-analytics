@@ -6,7 +6,12 @@ import java.time.format.DateTimeParseException;
 import java.util.*;
 
 /**
- * s
+ * The {@code DonationDB} class act as data storage which maintains two data structure
+ * {@code Map<Integer, Set<Donor>> donors} and {@code Map<String, Recipient> recipients}.
+ * Repeated {@code Donor} objects can be searched from {@code donors} with given year.
+ * Whereas, {@code Recipient} objects can be searched from {@code recipients} with its
+ * {@code cmteID}.
+ *
  * @author khwu
  */
 public class DonationDB {

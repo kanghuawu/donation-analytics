@@ -3,7 +3,10 @@ package com.khwu.analytics;
 import lombok.*;
 
 /**
- * j
+ * The {@code Donation} class represents data type for incoming donation
+ * streaming data. All arguments {@code donor}, {@code recipient}, {@code yearZipCode}
+ * and {@code transactionAMT} are required for initializing an object.
+ *
  * @author khwu
  */
 @Setter
