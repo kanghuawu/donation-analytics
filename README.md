@@ -6,16 +6,16 @@
 
 # Summary
 
-This project is about solving [coding challeng](https://github.com/InsightDataScience/donation-analytics) from [Insight Data Engineering Program](http://insightdataengineering.com). My approach solving the problem relies heavily on Java 8 `stream`, `lambda` as well as other functional programming which are well suite for handling streaming data.
+This project is about solving [coding challenge](https://github.com/InsightDataScience/donation-analytics) from [Insight Data Engineering Program](http://insightdataengineering.com). My approach solving the problem relies heavily on Java 8 `stream`, `lambda` as well as other functional programming paradigms which are well suited for handling streaming data.
 
 ## Depedencies
 
 * Java 8 (Required)
 * Maven 3.5.2 (Required)
-* lombok 1.16.18 (Added in pom.xml and will bed downloaded by Maven)
+* lombok 1.16.18 (Added in pom.xml and will be downloaded by Maven)
 * JUnit 4.8.1 (Added in pom.xml and will be downloaded by Maven)
 
-Java is relatively verbose comparing with other modern programming languages. [lombok](https://projectlombok.org) helps making the code compact by auto generating `Constructor`, `Getter`, `Setter`, `hashCode`, `equals` and other common methods using Java annotation. Notice that with `exclude` in `@EqualsAndHashCode`, we still have full control of the implementation of `hashCode` and `equals` method. It helps programmers focusing on most important part of the code. 
+Java is relatively verbose comparing with other modern programming languages. [lombok](https://projectlombok.org) helps making the code compact with automatically generated `Constructor` and common methods such as `Getter`, `Setter`, `hashCode`, `equals` using Java annotation. Notice that with `exclude` in `@EqualsAndHashCode`, we still have full control of the implementation of `hashCode` and `equals` method. It helps programmers focusing on most important part of the code. 
 
 ```java
 @Setter
@@ -31,9 +31,10 @@ public class Donor {
 
 ## How to run
 
-The jar file for this project is checked in Github. Therefore, cloning this repository and executing `run.sh` should work just fine. In case, the binary file is corrupted or does not work on your computer. Please uncomment the second command in `run.sh` as indicated below. The `run.sh` will compile the jar file again. Or just execute `mvn clean package -Dmaven.test.skip=true` under `./src/DonationAnalytics`.
+The jar file for this project is checked in Github. Therefore, cloning this repository and executing `run.sh` should work just fine. In case, the binary file is corrupted or does not work on your computer. Please uncomment the second command in `run.sh` as indicated below. The `run.sh` will compile the jar file every time your run it. Or, simply, just execute `mvn clean package -Dmaven.test.skip=true` under `./src/DonationAnalytics` directory before running `run.sh`.
 
 ```shell
+$ cat run.sh
 #!/bin/bash
 cd src/DonationAnalytics
 # mvn clean package -Dmaven.test.skip=true # <- uncomment this line
@@ -41,6 +42,8 @@ java -cp ./target/donation-analytics-1.0-SNAPSHOT.jar com.khwu.analytics.Main ..
 ```
 
 ## Project Structure
+
+Be aware the tree structure below only display directories under `./src`.
 
 ```shell
 $ tree -I "target" ./src
@@ -82,9 +85,9 @@ $ tree -I "target" ./src
 
 * Average: O(log(n))
 * Best: O(log(n))
-* Worst: O(log^2(n))
+* Worst: O(log<sup>2</sup>(n))
 
-This performance analysis is base on each piece of streaming data where `n` is amount of data already stored in memory. The bottleneck of the program is adding donation to `Percentile` which is O(log(n)). Whereas, the worst is O(log^2(n)) and is only theoretically possible. Two key analyses are discussed in detail below.
+**This performance analysis is from the angle of each streaming data where `n` is the amount of the valid donations already stored in memory.** The bottleneck performance of the program is adding donation to `Percentile` which is O(log(n)). Whereas, the worst case performance is O(log<sup>2</sup>(n)) and is only theoretically possible. Two key analyses are discussed in detail below. Before continuing, you might want to jumpt to [Diagrams](README.md#diagrams) to get familiar with who are the actors and how they interact.
 
 ## Look up `Donor` with a given year:
 
@@ -92,7 +95,7 @@ This performance analysis is base on each piece of streaming data where `n` is a
 
 * Average: O(1)
 * Best: O(1)
-* Worst: O(log^2(n))
+* Worst: O(log<sup>2</sup>(n))
 
 ### Space Complexity
 
@@ -130,7 +133,7 @@ Other quick lookups are implemented likewise (having same best and average perfo
 
 ### Description:
 
-In practice, adding donations to `Percentile` is the bottleneck for this program. To minimize computational cost, I use two sets of `PriorityQueue` naming `smallTree` and `bigTree`. `smallTree` has maximum value at root; `bigTree` has minimum value at root. The kth percentile is maintained as the root of `smallTree`. First, if the incoming donation is smaller or equal to the value at the root of the `smallTree`, the value would be add to the `smallTree`. Then, if this would cause <sup>k</sup>th percentile to misplace to the `bigTree`, then the root is going to add to the `bigTree`. Similiar logic if the incoming donation is greater than the root of the `smallTree`. After adding value in the `Percentile`, the performance for retrieving <sup>k</sup>th percentile is only O(1) which is just `peek`ing the root of `smallTree`
+In practice, adding donations to `Percentile` is the bottleneck for this program. To minimize computational cost, I use two sets of `PriorityQueue` naming them `smallTree` and `bigTree`. `smallTree` has maximum value at root; `bigTree` has minimum value at root. The k<sup>th</sup> percentile is maintained as the root of `smallTree`. First, if the incoming donation is smaller or equal to the value at the root of the `smallTree`, the value would be add to the `smallTree`. Then, if this would cause k<sup>th</sup> percentile to misplace to the `bigTree`, then the root is going to add to the `bigTree`. Similiar logic if the incoming donation is greater than the root of the `smallTree`. After adding value in the `Percentile`, the performance for retrieving k<sup>th</sup> percentile is only O(1) which is just `peek`ing the root of `smallTree`
 
 ## Benchmark
 
@@ -186,7 +189,7 @@ $ ./run_tests.sh
 
 # Diagrams
 
-The best way to understand Object-oriented programming paradigm is looking at the UML class diagram and sequence diagram. The class diagram was generated by [astah](http://astah.net/) with slight  modifications; the sequence diagram was drawn manually.
+The best way to understand object-oriented programming paradigm is looking at the UML class diagram and sequence diagram as shown here. Both diagrams were drawn using [astah](http://astah.net/). The class diagram was automatically generated with slight modifications; the sequence diagram was drawn from scratch.
 
 ## Class Diagram
 
@@ -194,7 +197,7 @@ The best way to understand Object-oriented programming paradigm is looking at th
 
 ## Sequence Diagram
 
-Sequence diagram is the sequence for each incoming valid donation data.
+Sequence diagram is the sequence for **each incoming** valid donation data.
 
 ![](./pic/seq-diagram.png)
 
