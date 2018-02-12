@@ -1,6 +1,6 @@
 # Created by .ignore support plugin (hsz.mobi)
 ### Maven template
-target/
+target/*
 !target/donation-analytics-1.0-SNAPSHOT.jar
 !target/donation-analytics-1.0-SNAPSHOT-sources.jar
 pom.xml.tag
@@ -28,7 +28,7 @@ buildNumber.properties
 .mtj.tmp/
 
 # Package Files #
-*.jar
+#*.jar
 *.war
 *.ear
 *.zip
