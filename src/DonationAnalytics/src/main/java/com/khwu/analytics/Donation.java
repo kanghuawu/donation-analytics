@@ -9,7 +9,6 @@ import lombok.*;
  *
  * @author khwu
  */
-@Setter
 @Getter
 @AllArgsConstructor
 public class Donation {

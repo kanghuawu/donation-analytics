@@ -1,5 +1,6 @@
 package com.khwu.analytics;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 
 import java.util.Optional;
@@ -10,11 +11,11 @@ import java.util.Optional;
  *
  * @author khwu
  */
+@Getter
 public class Statistic {
+    @Getter(AccessLevel.NONE)
     private Percentile percentile;
-    @Getter
     private double sum;
-    @Getter
     private int numOfDonor;
 
     public Statistic(double percentile) {

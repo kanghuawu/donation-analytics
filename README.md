@@ -6,7 +6,7 @@
 
 # Summary
 
-This project is about solving [coding challenge](https://github.com/InsightDataScience/donation-analytics) from [Insight Data Engineering Program](http://insightdataengineering.com). My approach solving the problem relies heavily on Java 8 `stream`, `lambda` as well as other functional programming paradigms which are well suited for handling streaming data.
+This project is about solving [coding challenge](https://github.com/InsightDataScience/donation-analytics) from [Insight Data Engineering Program](http://insightdataengineering.com). My approach solving the problem relies heavily on Java 8 `stream`, `lambda` as well as other functional programming paradigms (e.g. immutable objects) which are well suited for handling streaming data.
 
 ## Depedencies
 
@@ -18,7 +18,6 @@ This project is about solving [coding challenge](https://github.com/InsightDataS
 Java is relatively verbose comparing with other modern programming languages. [lombok](https://projectlombok.org) helps making the code compact with automatically generated `Constructor` and common methods such as `Getter`, `Setter`, `hashCode`, `equals` using Java annotation. Notice that with `exclude` in `@EqualsAndHashCode`, we still have full control of the implementation of `hashCode` and `equals` method. It helps programmers focusing on most important part of the code. 
 
 ```java
-@Setter
 @Getter
 @AllArgsConstructor
 @EqualsAndHashCode(exclude = "otherID")
@@ -31,7 +30,7 @@ public class Donor {
 
 ## How to run
 
-The jar file for this project is checked in Github. Therefore, cloning this repository and executing `run.sh` should work just fine. In case, the binary file is corrupted or does not work on your computer. Please uncomment the second command in `run.sh` as indicated below. The `run.sh` will compile the jar file every time your run it. Or, simply, just execute `mvn clean package -Dmaven.test.skip=true` under `./src/DonationAnalytics` directory before running `run.sh`.
+The jar file for this project is checked in Github. Therefore, cloning this repository and executing `run.sh` should work just fine. In case, the binary file is corrupted or does not work on your computer. Please uncomment the second command in `run.sh` as indicated below. The `run.sh` will compile the jar file every time your run it. Or, simply, just execute `mvn clean package -Dmaven.test.skip=true` under `./src/DonationAnalytics` directory before running `run.sh`. Also, make sure you've setup Java and Maven in your path. You can test them with `java -version` and `mvn -version`.
 
 ```shell
 $ cat run.sh
@@ -39,6 +38,17 @@ $ cat run.sh
 cd src/DonationAnalytics
 # mvn clean package -Dmaven.test.skip=true # <- uncomment this line
 java -cp ./target/donation-analytics-1.0-SNAPSHOT.jar com.khwu.analytics.Main ../../input/itcont.txt ../../input/percentile.txt ../../output/repeat_donors.txt
+$ java -version
+java version "1.8.0_151"
+Java(TM) SE Runtime Environment (build 1.8.0_151-b12)
+Java HotSpot(TM) 64-Bit Server VM (build 25.151-b12, mixed mode)
+$ mvn -version
+Apache Maven 3.5.2 (138edd61fd100ec658bfa2d307c43b76940a5d7d; 2017-10-18T00:58:13-07:00)
+Maven home: /usr/local/Cellar/maven/3.5.2/libexec
+Java version: 1.8.0_151, vendor: Oracle Corporation
+Java home: /Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/jre
+Default locale: en_US, platform encoding: UTF-8
+OS name: "mac os x", version: "10.13.3", arch: "x86_64", family: "mac"
 ```
 
 ## Project Structure

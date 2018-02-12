@@ -12,7 +12,6 @@ import lombok.Setter;
  *
  * @author khwu
  */
-@Setter
 @Getter
 @AllArgsConstructor
 @EqualsAndHashCode(exclude = "otherID")

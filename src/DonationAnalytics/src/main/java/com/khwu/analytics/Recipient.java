@@ -1,5 +1,6 @@
 package com.khwu.analytics;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 
 import java.util.HashMap;
@@ -13,12 +14,12 @@ import java.util.Optional;
  *
  * @author khwu
  */
+@Getter
 public class Recipient {
 
+    @Getter(AccessLevel.NONE)
     private final Map<YearZipCode, Statistic> groupedStatistics;
     private final double percentile;
-
-    @Getter
     private final String cmteID;
 
     public Recipient(String cmteID, double percentile) {
