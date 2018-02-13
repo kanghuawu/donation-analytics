@@ -98,7 +98,7 @@ public class StreamProcessor {
             return Optional.empty();
         }
 
-        Donor donor = new Donor(name, zipCode, otherId);
+        Donor donor = new Donor(name, zipCode.substring(0, 5), otherId);
         Recipient recipient = new Recipient(cmteID, percentile);
         YearZipCode yearZipCode = new YearZipCode(year, zipCode.substring(0, 5));
         Donation donation = new Donation(donor, recipient, yearZipCode, amt);

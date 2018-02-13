@@ -40,6 +40,6 @@ public class Recipient {
     }
 
     public Optional<Statistic> getStatistic(YearZipCode yearZipCode) {
-        return Optional.of(groupedStatistics.get(yearZipCode));
+        return Optional.ofNullable(groupedStatistics.get(yearZipCode));
     }
 }

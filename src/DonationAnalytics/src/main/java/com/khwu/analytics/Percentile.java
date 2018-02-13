@@ -54,7 +54,7 @@ public class Percentile {
     }
 
     public Optional<Double> getPerNum() {
-        return Optional.of(smallTree.peek());
+        return Optional.ofNullable(smallTree.peek());
     }
 
     public int size() {

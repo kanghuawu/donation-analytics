@@ -3,6 +3,7 @@ package com.khwu.analytics;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.Random;
 
 import static org.junit.Assert.*;
@@ -34,8 +35,6 @@ public class PercentileTest {
         }
         assertEquals(-1, p.getPerIdx());
     }
-
-
 
     @Test
     public void testSize100Percentile1GetPerIdx() {
@@ -228,10 +227,32 @@ public class PercentileTest {
     }
 
     @Test
-    public void testItcontFile() {
+    public void testItcontFile1() {
         Percentile p = new Percentile(30);
         p.add(313);
         p.add(384);
         assertEquals(313, p.getPerNum().get(), 0);
+    }
+
+    @Test
+    public void testItcontFile2() {
+        Percentile p = new Percentile(50.1);
+        p.add(313);
+        p.add(384);
+        assertEquals(384, p.getPerNum().get(), 0);
+    }
+
+    @Test
+    public void testItcontFile3() {
+        Percentile p = new Percentile(50);
+        p.add(313);
+        p.add(384);
+        assertEquals(313, p.getPerNum().get(), 0);
+    }
+
+    @Test
+    public void testItcontEmptyTree() {
+        Percentile p = new Percentile(30);
+        assertEquals(Optional.empty(), p.getPerNum());
     }
 }

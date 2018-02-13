@@ -30,7 +30,7 @@ public class Donor {
 
 ## How to run
 
-The jar file for this project is checked in Github. Therefore, cloning this repository and executing `run.sh` should work just fine. In case, the binary file is corrupted or does not work on your computer. Please uncomment the second command in `run.sh` as indicated below. The `run.sh` will compile the jar file every time your run it. Or, simply, just execute `mvn clean package -Dmaven.test.skip=true` under `./src/DonationAnalytics` directory before running `run.sh`. Also, make sure you've setup Java and Maven in your path. You can test them with `java -version` and `mvn -version`.
+The jar file for this project is checked in Github. Therefore, cloning this repository and executing `run.sh` should work just fine. In case, the binary file is corrupted or does not work on your computer. One ways is uncomment the second command in `run.sh` as indicated below. The `run.sh` will compile the jar file every time your run it. Or, simply, just execute `mvn clean package -Dmaven.test.skip=true` under `./src/DonationAnalytics` directory before running `run.sh`.
 
 ```shell
 $ cat run.sh
@@ -38,6 +38,11 @@ $ cat run.sh
 cd src/DonationAnalytics
 # mvn clean package -Dmaven.test.skip=true # <- uncomment this line
 java -cp ./target/donation-analytics-1.0-SNAPSHOT.jar com.khwu.analytics.Main ../../input/itcont.txt ../../input/percentile.txt ../../output/repeat_donors.txt
+```
+
+Also, make sure you've setup Java and Maven in your path. You can test them with `java -version` and `mvn -version`.
+
+```shell
 $ java -version
 java version "1.8.0_151"
 Java(TM) SE Runtime Environment (build 1.8.0_151-b12)
@@ -171,19 +176,19 @@ Total time used: 14545 ms
  T E S T S
 -------------------------------------------------------
 Running com.khwu.analytics.RecipientTest
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.05 sec
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.039 sec
 Running com.khwu.analytics.DonationDBTest
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 sec
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 sec
 Running com.khwu.analytics.StreamProcessorTest
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.14 sec
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.13 sec
 Running com.khwu.analytics.PercentileTest
-Tests run: 17, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.06 sec
+Tests run: 20, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.052 sec
 Running com.khwu.analytics.MainTest
 Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 sec
 
 Results :
 
-Tests run: 27, Failures: 0, Errors: 0, Skipped: 0
+Tests run: 35, Failures: 0, Errors: 0, Skipped: 0
 ```
 
 ## Integration Tests
@@ -194,7 +199,8 @@ $ ./run_tests.sh
 [PASS]: test_2 repeat_donors.txt
 [PASS]: test_3 repeat_donors.txt
 [PASS]: test_4 repeat_donors.txt
-[Sun Feb 11 18:12:22 PST 2018] 4 of 4 tests passed
+[PASS]: test_5 repeat_donors.txt
+[Mon Feb 12 20:14:04 PST 2018] 5 of 5 tests passed
 ```
 
 # Diagrams
