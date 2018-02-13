@@ -152,7 +152,7 @@ In practice, adding donations to `Percentile` is the bottleneck for this program
 
 ## Benchmark
 
-For benchmark, I downloaded 2017-2018 data files from [The Federal Election Commission](http://classic.fec.gov/finance/disclosure/ftpdet.shtml). As shown below, the size of file is approximately 1.23 GB. The program took about 15 seconds and 400 MB of memory usage to parse this data calculating its running 30th percentile. The experiment is conducted on my 2017 MacBook Pro which comes with 2.3 GHz Intel Core i5 and 8 GB of RAM.
+For benchmark, I downloaded 2017-2018 data files from [The Federal Election Commission](http://classic.fec.gov/finance/disclosure/ftpdet.shtml). As shown below, the size of file is approximately 1.23 GB. The program took about 14 seconds and 300 MB of memory usage to parse this data calculating its running 30th percentile. The experiment is conducted on my 2017 MacBook Pro which comes with 2.3 GHz Intel Core i5 and 8 GB of RAM.
 
 ```shell
 $ ls -l
@@ -163,8 +163,8 @@ $ ./run.sh
 Used Memory before: 1 MB
 === Start parsing file ===
 === Complete parsing file ===
-Used Memory after: 394 MB
-Total time used: 14545 ms
+Used Memory after: 282 MB
+Total time used: 13436 ms
 ```
 
 # Tests
