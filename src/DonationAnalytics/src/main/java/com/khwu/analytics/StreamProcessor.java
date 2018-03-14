@@ -35,7 +35,7 @@ public class StreamProcessor {
              BufferedWriter writer = Files.newBufferedWriter(Paths.get(outputDir))){
 
             final double percentile = percentileScanner.nextDouble();
-            if (percentile > 100 || percentile <= 0) {
+            if (percentile > 100 || percentile < 1) {
                 throw new IllegalArgumentException("Incorrect percentile.");
             }
             // System.out.printf("Percentile is: %d%n", percentile);

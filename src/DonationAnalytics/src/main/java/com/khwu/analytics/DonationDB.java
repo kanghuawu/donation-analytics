@@ -28,11 +28,11 @@ public class DonationDB {
     public Optional<String> getSummary(Donation donation) {
         String cmteID = donation.getRecipient().getCmteID();
 
-        YearZipCode yearZipCode = donation.getYearZipCode();
-
         if (!recipients.containsKey(cmteID)) return Optional.empty();
 
-        Optional<Statistic> statisticOptional = recipients.get(cmteID).getStatistic(donation.getYearZipCode());
+        YearZipCode yearZipCode = donation.getYearZipCode();
+
+        Optional<Statistic> statisticOptional = recipients.get(cmteID).getStatistic(yearZipCode);
 
         if (statisticOptional.isPresent()) {
             Statistic statistic = statisticOptional.get();
@@ -56,10 +56,6 @@ public class DonationDB {
         recipients.putIfAbsent(currRecipient.getCmteID(), currRecipient);
         Recipient recipient = recipients.get(currRecipient.getCmteID());
         recipient.add(donation);
-
-        int year = donation.getYearZipCode().getYear();
-        donors.putIfAbsent(year, new HashSet<>());
-        donors.get(year).add(donation.getDonor());
     }
 
     public boolean isRepeatedDonor(Donation donation) {
